@@ -1,2 +1,21 @@
 @import "tailwindcss";
-
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: red;
+}
+.b {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+.b:hover {
+  background-color: #333;
+}
