@@ -4,6 +4,7 @@ import { useState } from "react";
 import TextInHeader from "./../Ui/Header/TextInHeader";
 import ButtonInHeader from "./../Ui/Header/ButtonInHeader";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -48,12 +49,16 @@ export default function Header() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          <ButtonInHeader
+         <Link href="/login"> 
+            <ButtonInHeader
             text="تسجيل الدخول"
             className="bg-transparent text-[#EFE1D1] border border-[#EFE1D1]"
           />
+         </Link>
+         <Link href="/register"> 
+            <ButtonInHeader text="إنشاء حساب" />
+          </Link>
 
-          <ButtonInHeader text="إنشاء حساب" />
         </div>
 
 
