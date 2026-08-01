@@ -58,12 +58,18 @@ export default function Header() {
 
 
         {/* Mobile Button */}
-        <button
+       {!open&& <button 
           onClick={() => setOpen(!open)}
-          className="md:hidden text-[#EFE1D1] text-4xl"
+          className="md:hidden text-[#EFE1D1] text-4xl cursor-pointer"
         >
           ☰
-        </button>
+        </button>}
+         {open&& <button 
+          onClick={() => setOpen(!open)}
+          className="md:hidden text-[#EFE1D1] text-5xl cursor-pointer"
+        >
+          ×
+        </button>}
 
       </div>
 
@@ -79,7 +85,14 @@ export default function Header() {
           items-center
           border-t
           border-[#EFE1D1]/30
-          pt-5
+          pt-4
+          absolute
+          bg-[#432E1A]
+          w-full
+          left-0
+          top-15
+          z-10
+          py-5
         ">
 
           <TextInHeader text="عن الفريق" />
