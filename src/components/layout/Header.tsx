@@ -21,12 +21,12 @@ export default function Header() {
             width={220}
             height={220}
             className="
-              w-40
-              h-40
-              sm:w-48
-              sm:h-48
-              md:w-56
-              md:h-56
+              w-32
+              h-32
+              sm:w-36
+              sm:h-36
+              md:w-44
+              md:h-44
               object-contain
               -my-10
               sm:-my-12
@@ -88,7 +88,7 @@ export default function Header() {
 
           <ButtonInHeader
             text="تسجيل الدخول"
-            className="bg-transparent text-[#EFE1D1] border border-[#EFE1D1]"
+            className="bg-transparent text-[#EFE1D1]   border border-[#EFE1D1]"
           />
 
           <ButtonInHeader text="إنشاء حساب" />
@@ -98,4 +98,4 @@ export default function Header() {
 
     </header>
   );
-}
+}       

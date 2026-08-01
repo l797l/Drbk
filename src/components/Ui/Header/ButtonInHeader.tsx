@@ -23,6 +23,7 @@ export default function ButtonInHeader({
         transition-all
         duration-300
         cursor-pointer
+        hover:text-[#432E1A]
 
         bg-[#EFE1D1]
         text-[#432E1A]
