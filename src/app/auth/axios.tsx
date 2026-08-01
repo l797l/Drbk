@@ -2,7 +2,7 @@ import axios from "axios"
 import {getToken} from "./auth"
 
 const api = axios.create({
-    baseURL : process.env.NEXT_PUBLIC_API_URL
+    baseURL : "https://drbk.runasp.net/api/"
 })
 
 api.interceptors.request.use((con) =>{

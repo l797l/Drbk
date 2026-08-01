@@ -5,12 +5,9 @@ import axios from "axios";
 
 
 export const loginApi = async (dto: LoginDto) => {
-  const url = process.env.NEXT_PUBLIC_API_LOGIN_STRING;
-
-  if (!url) return;
 
   try {
-    const result = await api.post(url, dto);
+    const result = await api.post("User/login", dto);
 
     
     if(!result.data.token)
@@ -27,12 +24,10 @@ export const loginApi = async (dto: LoginDto) => {
   };
 
   export const registerApi = async (dto: RegisterDto) => {
-  const url = process.env.NEXT_PUBLIC_API_REGISTER_STRING;
 
-  if (!url) return;
 
   try {
-    const result = await api.post(url, dto);
+    const result = await api.post("User/register", dto);
     
     return result.status;
   } catch (error: unknown) {
