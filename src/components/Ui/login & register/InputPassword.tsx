@@ -21,7 +21,7 @@ export default function InputPassword({
   return (
     <div className="w-full flex flex-col gap-2">
 
-      {/* Text فوق الحقل */}
+      {/* Text   */}
       <label className="text-[#432E1A] font-semibold text-right">
         {title}
       </label>
@@ -52,7 +52,7 @@ export default function InputPassword({
         />
 
 
-        {/* زر اظهار الباسورد */}
+        {/* view password */}
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
@@ -61,6 +61,8 @@ export default function InputPassword({
             right-3
             top-1/2
             -translate-y-1/2
+            p-2
+            z-10
           "
         >
 
@@ -80,6 +82,7 @@ export default function InputPassword({
               alt="Show Password"
               width={48}
               height={48}
+              
             />
 
           )}
@@ -91,7 +94,7 @@ export default function InputPassword({
 
       {/* Text helping */}
       <p className="text-xs text-[#432E1A]/70 text-right">
-        يجب أن تحتوي كلمة المرور على أحرف وأرقام مثل 12345aa
+        يجب أن تحتوي كلمة المرور على أحرف وأرقام  
       </p>
 
     </div>

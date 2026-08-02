@@ -10,10 +10,8 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="bg-[#432E1A] text-white px-4 md:px-8 py-4">
-
+    <header className="relative bg-[#432E1A] text-white px-4 md:px-8 py-4">
       <div className="flex items-center justify-between">
-
         {/* Logo */}
         <div className="relative">
           <Image
@@ -38,7 +36,6 @@ export default function Header() {
           />
         </div>
 
-
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
           <TextInHeader text="عن الفريق" />
@@ -46,42 +43,33 @@ export default function Header() {
           <TextInHeader text="الدعم" />
         </nav>
 
-
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center gap-4">
-         <Link href="/login"> 
+          <Link href="/login">
             <ButtonInHeader
-            text="تسجيل الدخول"
-            className="bg-transparent text-[#EFE1D1] border border-[#EFE1D1]"
-          />
-         </Link>
-         <Link href="/register"> 
+              text="تسجيل الدخول"
+              className="bg-transparent text-[#EFE1D1] border border-[#EFE1D1]"
+            />
+          </Link>
+          <Link href="/register">
             <ButtonInHeader text="إنشاء حساب" />
           </Link>
-
         </div>
 
-
         {/* Mobile Button */}
-       {!open&& <button 
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-[#EFE1D1] text-4xl cursor-pointer"
+        <button
+          type="button"
+          onClick={() => setOpen((prev) => !prev)}
+          className="md:hidden relative z-50 text-[#EFE1D1] text-4xl cursor-pointer"
         >
-          ☰
-        </button>}
-         {open&& <button 
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-[#EFE1D1] text-5xl cursor-pointer"
-        >
-          ×
-        </button>}
-
+          {open ? "×" : "☰"}
+        </button>
       </div>
-
 
       {/* Mobile Menu */}
       {open && (
-        <div className="
+        <div
+          className="
           md:hidden
           mt-5
           flex
@@ -98,22 +86,24 @@ export default function Header() {
           top-15
           z-10
           py-5
-        ">
-
+        "
+        >
           <TextInHeader text="عن الفريق" />
           <TextInHeader text="كيفية الاستخدام" />
           <TextInHeader text="الدعم" />
 
-          <ButtonInHeader
-            text="تسجيل الدخول"
-            className="bg-transparent text-[#EFE1D1]   border border-[#EFE1D1]"
-          />
-
-          <ButtonInHeader text="إنشاء حساب" />
-
+         <Link href="/login">
+              <ButtonInHeader
+                text="تسجيل الدخول"
+                className="bg-transparent text-[#EFE1D1]   border border-[#EFE1D1]"
+              />
+          </Link>
+          
+          <Link href="/register">
+              <ButtonInHeader text="إنشاء حساب" />
+          </Link>
         </div>
       )}
-
     </header>
   );
-}       
+}
