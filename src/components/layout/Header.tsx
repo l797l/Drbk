@@ -93,14 +93,14 @@ export default function Header() {
           <TextInHeader text="الدعم" />
 
          <Link href="/login">
-              <ButtonInHeader
+              <ButtonInHeader onClick={() => setOpen(false)}
                 text="تسجيل الدخول"
                 className="bg-transparent text-[#EFE1D1]   border border-[#EFE1D1]"
               />
           </Link>
           
           <Link href="/register">
-              <ButtonInHeader text="إنشاء حساب" />
+              <ButtonInHeader text="إنشاء حساب" onClick={() => setOpen(false)}/>
           </Link>
         </div>
       )}

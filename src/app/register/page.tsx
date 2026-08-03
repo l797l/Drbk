@@ -7,6 +7,7 @@ import InputPhone from "@/src/components/Ui/login & register/InputPhone";
 import InputPassword from "@/src/components/Ui/login & register/InputPassword";
 import Link from "next/link";
 import ButtonEnter from "@/src/components/Ui/login & register/ButtonEnter";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
   const [fullName, setFullName] = useState("");
@@ -18,6 +19,7 @@ export default function Register() {
   const [dataEmpty, setDataEmpty] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
     const [errorMessageConfirm, setErrorMessageConfirm] = useState("");
+    const router = useRouter();
 
 
 
@@ -78,7 +80,7 @@ export default function Register() {
     const result = await registerApi(data);
     if (result == null) return;
     if (result < 206) {
-      <Link href="/login" />;
+        router.push("/login");
     } else {
       alert("حدث خطأ أثناء إنشاء الحساب");
     }
