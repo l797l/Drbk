@@ -3,58 +3,44 @@
 import { useState } from "react";
 import Image from "next/image";
 
-type InputPhone = {
+type InputPhoneProps = {
   value: string;
   setValue: (value: string) => void;
 };
-export default function InputPhone({ value, setValue }: InputPhone) {
-  const [phone, setPhone] = useState("07");
+
+export default function InputPhone({ value, setValue }: InputPhoneProps) {
   const [error, setError] = useState(false);
 
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let phone = e.target.value;
 
-    let value = e.target.value;
+    phone = phone.replace(/\D/g, "");
 
-    //   allow only numbers
-    value = value.replace(/\D/g, "");
-
-
-    //   don't allow to start with 07
-    if (!value.startsWith("07")) {
-      value = "07";
+    if (!phone.startsWith("07")) {
+      phone = "07";
     }
 
-
-    // max length 11
-    if (value.length > 11) {
-      value = value.slice(0, 11);
+    if (phone.length > 11) {
+      phone = phone.slice(0, 11);
     }
 
+    setValue(phone);
 
-    setPhone(value);
-
-
-    // check
-    if (value.length === 11 && value.startsWith("07")) {
+    // التحقق
+    if (phone.length === 11 && phone.startsWith("07")) {
       setError(false);
     } else {
       setError(true);
     }
-
   };
-
 
   return (
     <div className="w-full flex flex-col gap-2">
 
-      {/* addriss */}
-      <label className=" text-[#432E1A] font-semibold text-right">
+      <label className="text-[#432E1A] font-semibold text-right">
         رقم الهاتف
       </label>
 
-
-      {/* Input */}
       <div
         className={`
           flex
@@ -64,31 +50,22 @@ export default function InputPhone({ value, setValue }: InputPhone) {
           border-2
           h-12
           transition
-          ${
-            error
-            ? "border-red-500"
-            : "border-[#432E1A]"
-          }
+          ${error ? "border-red-500" : "border-[#432E1A]"}
         `}
       >
 
-
-        {/* flag */}
         <div className="px-3 border-l border-[#432E1A]/20">
-
           <Image
-            src="IQ-Flag.svg"
+            src="/IQ-Flag.svg"
             alt="Iraq"
             width={28}
             height={20}
             className="object-contain"
           />
-
         </div>
 
-
         <input
-          value={phone}
+          value={value}
           onChange={handleChange}
           type="tel"
           placeholder="07700000000"
@@ -101,17 +78,13 @@ export default function InputPhone({ value, setValue }: InputPhone) {
           "
         />
 
-
       </div>
 
-
-      {/* message error*/}
       {error && (
-        <p className="text-red-500 text-sm ">
+        <p className="text-red-500 text-sm  text-right">
           يجب أن يبدأ الرقم بـ 07 ويتكون من 11 رقم
         </p>
       )}
-
 
     </div>
   );

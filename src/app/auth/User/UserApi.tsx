@@ -10,8 +10,10 @@ export const loginApi = async (dto: LoginDto) => {
     const result = await api.post("User/login", dto);
 
     
-    if(!result.data.token)
+    if(result.data.token){
         setToken(result.data.token)
+        localStorage.setItem("userId", result.data.userId);
+      }
     
     return result.status;
   } catch (error: unknown) {

@@ -1,45 +1,92 @@
 "use client";
 
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { registerApi } from "@/src/app/auth/User/UserApi";
 
 import InputPhone from "@/src/components/Ui/login & register/InputPhone";
 import InputPassword from "@/src/components/Ui/login & register/InputPassword";
-
+import Link from "next/link";
+import ButtonEnter from "@/src/components/Ui/login & register/ButtonEnter";
 
 export default function Register() {
-
   const [fullName, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState("07");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [dataEmpty, setDataEmpty] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
+    const [errorMessageConfirm, setErrorMessageConfirm] = useState("");
 
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
 
 
-    if(password !== confirmPassword){
+  useEffect(() => {
+      const checkDataEmpty = () => {
+        const hasLettersAndNumbers = /^(?=.*[A-Za-z])(?=.*\d).+$/.test(password);
+  
+        if (password.trim() != "" && !hasLettersAndNumbers) {
+          setErrorMessage("يجب أن تحتوي كلمة المرور على أحرف وأرقام");
+        } else {
+          if (password.trim() != "" && password.length < 8) {
+            setErrorMessage("يجب أن تكون كلمة المرور أكثر من 8 أحرف");
+          } else {
+            setErrorMessage("");
+          }
+        }
+        if (confirmPassword.trim() != "" && password !== confirmPassword) {
+          setErrorMessageConfirm("كلمة المرور غير متطابقة");
+        }
+        else {
+          setErrorMessageConfirm("");
+        }
+        if (
+          phone.length < 11 ||
+          password.trim() === "" ||
+          !hasLettersAndNumbers ||
+          password.length < 8 ||
+          fullName.trim() === "" ||
+          confirmPassword.trim() === "" ||
+          password !== confirmPassword
+        ) {
+          setDataEmpty(true);
+        } else {
+          setDataEmpty(false);
+          setErrorMessage("");
+        }
+      };
+      checkDataEmpty();
+    }, [phone, password, confirmPassword, fullName]);
+  const handleSubmit = async () => {
+
+    setLoading(true);
+    if (password !== confirmPassword) {
       alert("كلمة المرور غير متطابقة");
+      setLoading(false);
       return;
     }
-
 
     const data = {
       fullName,
       phone,
       password,
-      role
+      role,
     };
+    console.log("data:", data);
 
-    registerApi(data);
+    const result = await registerApi(data);
+    if (result == null) return;
+    if (result < 206) {
+      <Link href="/login" />;
+    } else {
+      alert("حدث خطأ أثناء إنشاء الحساب");
+    }
   };
 
-
   return (
-
-    <main className="
+    <main
+      className="
       min-h-screen
       flex
       items-center
@@ -47,11 +94,9 @@ export default function Register() {
       bg-[#EFE1D1]
       px-5
       py-10
-    ">
-
-
-      <form
-        onSubmit={handleSubmit}
+    "
+    >
+      <div
         className="
           w-full
           max-w-md
@@ -64,29 +109,26 @@ export default function Register() {
           gap-5
         "
       >
-
-
-        <h1 className="
+        <h1
+          className="
           text-3xl
           font-bold
           text-center
           text-[#432E1A]
-        ">
+        "
+        >
           إنشاء حساب
         </h1>
 
-
-
         {/* Full Name */}
         <div className="flex flex-col gap-2">
-
           <label className="text-right text-[#432E1A] font-semibold">
             الاسم الكامل
           </label>
 
           <input
             value={fullName}
-            onChange={(e)=>setFullName(e.target.value)}
+            onChange={(e) => setFullName(e.target.value)}
             placeholder="Ali Mahdi"
             className="
               h-12
@@ -98,45 +140,33 @@ export default function Register() {
               outline-none
             "
           />
-
         </div>
 
-
-
-
-        <InputPhone
-          value={phone}
-          setValue={setPhone}
-        />
-
-
+        <InputPhone value={phone} setValue={setPhone} />
 
         <InputPassword
           value={password}
           setValue={setPassword}
           title="كلمة المرور"
+          errorMessage={errorMessage}
+          placeholder="أدخل كلمة المرور"
         />
-
-
 
         <InputPassword
           value={confirmPassword}
           setValue={setConfirmPassword}
           title="تأكيد كلمة المرور"
           placeholder="اعد كتابة كلمة المرور"
+          errorMessage={errorMessageConfirm}
         />
-
-
 
         {/* Role */}
         <div className="flex flex-col gap-2">
-
           <label className="text-right text-[#432E1A] font-semibold">
             نوع الحساب
           </label>
 
-
-         <select
+          <select
             value={role}
             onChange={(e) => setRole(Number(e.target.value))}
             className="
@@ -152,31 +182,16 @@ export default function Register() {
             <option value={1}>مستخدم</option>
             <option value={2}>سائق</option>
           </select>
+        </div>
 
-                  </div>
-
-
-
-        <button
-          type="submit"
-          className="
-            h-12
-            rounded-xl
-            bg-[#432E1A]
-            text-[#EFE1D1]
-            font-bold
-            hover:bg-[#5a3c22]
-            transition
-          "
-        >
-          إنشاء حساب
-        </button>
-
-
-      </form>
-
-
+        <ButtonEnter
+          loading={loading}
+          text="إنشاء حساب"
+          onClick={ handleSubmit}
+           dataEmpty={dataEmpty}
+          
+        />
+      </div>
     </main>
-
   );
 }

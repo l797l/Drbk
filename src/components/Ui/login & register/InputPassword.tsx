@@ -6,14 +6,17 @@ import Image from "next/image";
 type InputPasswordProps = {
   title?: string;
   placeholder?: string;
- value: string;
+  value: string;
   setValue: (value: string) => void;
+  errorMessage?: string;
 };
-
 
 export default function InputPassword({
   title = "كلمة المرور",
   placeholder = "12345aa",
+  value,
+  setValue,
+  errorMessage = "",
 }: InputPasswordProps) {
 
   const [showPassword, setShowPassword] = useState(false);
@@ -21,18 +24,17 @@ export default function InputPassword({
   return (
     <div className="w-full flex flex-col gap-2">
 
-      {/* Text   */}
       <label className="text-[#432E1A] font-semibold text-right">
         {title}
       </label>
 
-
-      {/* Input Box */}
       <div className="relative">
 
         <input
           type={showPassword ? "text" : "password"}
           placeholder={placeholder}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
           className="
             w-full
             h-12
@@ -51,8 +53,6 @@ export default function InputPassword({
           "
         />
 
-
-        {/* view password */}
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
@@ -65,38 +65,33 @@ export default function InputPassword({
             z-10
           "
         >
-
           {showPassword ? (
-
             <Image
               src="/hidden.png"
               alt="Hide Password"
               width={48}
-             height={48}
+              height={48}
             />
-
           ) : (
-
             <Image
               src="/apparent.png"
               alt="Show Password"
               width={48}
               height={48}
-              
             />
-
           )}
-
         </button>
 
       </div>
 
-
-      {/* Text helping */}
       <p className="text-xs text-[#432E1A]/70 text-right">
-        يجب أن تحتوي كلمة المرور على أحرف وأرقام  
+        يجب أن تحتوي كلمة المرور على أحرف وأرقام
       </p>
-
+            
+        <p className="text-red-500 text-sm text-right">
+            {errorMessage}
+       </p>
+      
     </div>
   );
 }
