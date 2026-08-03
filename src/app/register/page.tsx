@@ -14,12 +14,12 @@ export default function Register() {
   const [phone, setPhone] = useState("07");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState(1);
+  const [role, setRole] = useState(0);
   const [loading, setLoading] = useState(false);
   const [dataEmpty, setDataEmpty] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-    const [errorMessageConfirm, setErrorMessageConfirm] = useState("");
-    const router = useRouter();
+  const [errorMessageConfirm, setErrorMessageConfirm] = useState("");
+  const router = useRouter();
 
 
 
@@ -50,7 +50,8 @@ export default function Register() {
           password.length < 8 ||
           fullName.trim() === "" ||
           confirmPassword.trim() === "" ||
-          password !== confirmPassword
+          password !== confirmPassword ||
+          role === 0
         ) {
           setDataEmpty(true);
         } else {
@@ -59,7 +60,7 @@ export default function Register() {
         }
       };
       checkDataEmpty();
-    }, [phone, password, confirmPassword, fullName]);
+    }, [phone, password, confirmPassword, fullName, role]);
   const handleSubmit = async () => {
 
     setLoading(true);
@@ -170,6 +171,7 @@ export default function Register() {
 
           <select
             value={role}
+            required
             onChange={(e) => setRole(Number(e.target.value))}
             className="
               h-12
@@ -181,6 +183,7 @@ export default function Register() {
               outline-none
             "
           >
+            <option value={0} hidden >اختار نوع الحساب</option>
             <option value={1}>مستخدم</option>
             <option value={2}>سائق</option>
           </select>
