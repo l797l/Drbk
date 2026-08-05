@@ -170,6 +170,7 @@ export default function Register() {
           </label>
 
           <select
+            value={role}
             required
             onChange={(e) => setRole(Number(e.target.value))}
             className="
@@ -182,7 +183,7 @@ export default function Register() {
               outline-none
             "
           >
-            <option  hidden >اختار نوع الحساب</option>
+            <option disabled  hidden value={0}>اختار نوع الحساب</option>
             <option value={1}>مستخدم</option>
             <option value={2}>سائق</option>
           </select>
