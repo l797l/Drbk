@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://tamra-line.vercel.app"),
   title: "TamraLine | تمرا لاين",
   description: "تمرا لاين منصة لتوصيل طلاب الجامعات في العراق. حجز سريع، سائقون موثوقون، وأسعار مناسبة. الحل الأمثل لمواصلاتك اليومية للجامعة.",
   icons: {
