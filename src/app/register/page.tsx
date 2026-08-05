@@ -132,7 +132,7 @@ export default function Register() {
           <input
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            placeholder="Ali Mahdi"
+            placeholder="ادخل الاسم الكامل"
             className="
               h-12
               rounded-xl
