@@ -22,13 +22,22 @@ export const metadata: Metadata = {
   icons: {
     icon: "/headerLogo.png",
   },
-  openGraph: {
-    title: "TamraLine | تمرا لاين",
-    description: "منصة توصيل الطلاب الأولى في العراق - حجز سريع وسائقون موثوقون",
-    images: ["/logo.png"],
-    locale: "ar_IQ",
-    siteName: "TamraLine",
-  },
+ openGraph: {
+  title: "TamraLine | تمرا لاين",
+  description: "منصة توصيل الطلاب الأولى في العراق - حجز سريع وسائقون موثوقون",
+  url: "https://tamra-line.vercel.app",
+  siteName: "TamraLine",
+  locale: "ar_IQ",
+  type: "website",
+  images: [
+    {
+      url: "/logo.png",
+      width: 1200,
+      height: 630,
+      alt: "TamraLine",
+    },
+  ],
+},
 };
 
 export default function RootLayout({
