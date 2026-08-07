@@ -38,9 +38,10 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
-          <TextInHeader text="عن الفريق" />
-          <TextInHeader text="كيفية الاستخدام" />
-          <TextInHeader text="الدعم" />
+          <TextInHeader text="كيف الاستخدام" toLink="/Usage"/>
+          <TextInHeader text="الدعم" toLink="/Suppprt"/>
+           <TextInHeader text="عن الفريق"  toLink="/About"/>
+           <TextInHeader text="الرئيسية"  toLink="/"/>
         </nav>
 
         {/* Desktop Buttons */}
@@ -88,9 +89,11 @@ export default function Header() {
           py-5
         "
         >
-          <TextInHeader text="عن الفريق" />
-          <TextInHeader text="كيفية الاستخدام" />
-          <TextInHeader text="الدعم" />
+            <TextInHeader text="كيف الاستخدام" toLink="/Usage"/>
+          <TextInHeader text="الدعم" toLink="/Suppprt"/>
+           <TextInHeader text="عن الفريق"  toLink="/About"/>
+           <TextInHeader text="الرئيسية"  toLink="/"/>
+       
 
          <Link href="/login">
               <ButtonInHeader onClick={() => setOpen(false)}
