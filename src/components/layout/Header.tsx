@@ -39,7 +39,7 @@ export default function Header() {
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
           <TextInHeader text="كيف الاستخدام" toLink="/Usage"/>
-          <TextInHeader text="الدعم" toLink="/Suppprt"/>
+          <TextInHeader text="الدعم" toLink="/Support"/>
            <TextInHeader text="عن الفريق"  toLink="/About"/>
            <TextInHeader text="الرئيسية"  toLink="/"/>
         </nav>
@@ -90,7 +90,7 @@ export default function Header() {
         "
         >
             <TextInHeader text="كيف الاستخدام" toLink="/Usage"/>
-          <TextInHeader text="الدعم" toLink="/Suppprt"/>
+          <TextInHeader text="الدعم" toLink="/Support"/>
            <TextInHeader text="عن الفريق"  toLink="/About"/>
            <TextInHeader text="الرئيسية"  toLink="/"/>
        
