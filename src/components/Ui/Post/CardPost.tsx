@@ -19,45 +19,78 @@ type CardPostProps = {
 
 export default function CardPost({ post }: CardPostProps) {
   return (
-    <div className="overflow-hidden rounded-3xl bg-[#432E1A] shadow-xl transition hover:scale-[1.01 ">
-      <div className="flex flex-col md:flex-row ">
-        {/* Content */}
-        <div className="flex flex-1 flex-col justify-between p-6 text-[#EFE1D1] ">
+    <div
+      dir="rtl"
+      className="w-full overflow-hidden rounded-3xl bg-[#432E1A] shadow-xl"
+    >
+      <div className="flex flex-col md:flex-row">
+
+        {/* الصورة - اليمين */}
+        <div className="w-full md:w-[35%]">
+          <div className="relative h-64 w-full md:h-full md:min-h-[420px]">
+            <Image
+              src={"/headerLogo.png"}
+              alt={post.nameCar}
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* المعلومات - اليسار */}
+        <div className="flex flex-1 flex-col p-6 text-right text-[#EFE1D1]">
+
           {/* Header */}
-          <div>
-            <div className="mb-4 flex items-center justify-between gap-3">
-              <h2 className="text-2xl font-bold">{post.nameCar}</h2>
+          <div className="mb-5 flex items-center justify-between gap-4">
 
-              <span
-                className={`rounded-full px-4 py-1 text-sm font-bold ${
-                  post.status === 0
-                    ? "bg-green-500 text-white"
-                    : "bg-red-500 text-white"
-                }`}
-              >
-                {post.status === 0 ? "متوفر" : "محجوز"}
-              </span>
-            </div>
+            <h2 className="text-2xl font-bold">
+              {post.nameCar}
+            </h2>
 
-            <p className="leading-7 text-[#EFE1D1]/80">{post.desciption}</p>
+            <span
+              className={`shrink-0 rounded-full px-4 py-1 text-sm font-bold ${
+                post.status === 0
+                  ? "bg-green-500 text-white"
+                  : "bg-red-500 text-white"
+              }`}
+            >
+              {post.status === 0 ? "متوفر" : "محجوز"}
+            </span>
+
           </div>
 
+          {/* الوصف */}
+          <p className="leading-8 text-[#EFE1D1]/80">
+            {post.desciption}
+          </p>
+
           {/* Information */}
-          <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-            <div>
-              <p className="text-[#EFE1D1]/60">الجامعة</p>
+          <div className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2">
 
-              <p className="font-semibold">{post.university}</p>
+            <div>
+              <p className="mb-1 text-sm text-[#EFE1D1]/60">
+                الجامعة
+              </p>
+
+              <p className="font-semibold">
+                {post.university}
+              </p>
             </div>
 
             <div>
-              <p className="text-[#EFE1D1]/60">المحافظة</p>
+              <p className="mb-1 text-sm text-[#EFE1D1]/60">
+                المحافظة
+              </p>
 
-              <p className="font-semibold">{post.governorate}</p>
+              <p className="font-semibold">
+                {post.governorate}
+              </p>
             </div>
 
             <div>
-              <p className="text-[#EFE1D1]/60">الشفت</p>
+              <p className="mb-1 text-sm text-[#EFE1D1]/60">
+                الشفت
+              </p>
 
               <p className="font-semibold">
                 {post.shift === 0 ? "صباحي" : "مسائي"}
@@ -65,50 +98,57 @@ export default function CardPost({ post }: CardPostProps) {
             </div>
 
             <div>
-              <p className="text-[#EFE1D1]/60">السائق</p>
+              <p className="mb-1 text-sm text-[#EFE1D1]/60">
+                السائق
+              </p>
 
-              <p className="font-semibold">{post.fullName}</p>
+              <p className="font-semibold">
+                {post.fullName}
+              </p>
             </div>
+
           </div>
 
-          {/* Areas */}
-          <div className="mt-6">
-            <p className="mb-3 text-sm text-[#EFE1D1]/60">المناطق</p>
+          {/* المناطق */}
+          <div className="mt-7">
+
+            <p className="mb-3 text-sm text-[#EFE1D1]/60">
+              المناطق
+            </p>
 
             <div className="flex flex-wrap gap-2">
+
               {post.area.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full bg-[#5B3F22] px-4 py-1 text-sm"
+                  className="rounded-full bg-[#5B3F22] px-4 py-2 text-sm"
                 >
                   {item}
                 </span>
               ))}
+
             </div>
+
           </div>
 
-          {/* Footer */}
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          {/* WhatsApp */}
+          <div className="mt-8">
+
             <a
-              href={`tel:${post.phoneNumber}`}
-              className="rounded-xl bg-[#EFE1D1] px-6 py-3 text-center font-bold text-[#432E1A] transition hover:bg-white"
+              href={`https://wa.me/964${post.phoneNumber.replace(/^0/, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#25D366] px-6 py-3 font-bold text-white transition hover:bg-[#1ebe5d]"
             >
-              📞 اتصال
+              <i className="fa-brands fa-whatsapp text-2xl" />
+
+              <span>
+                تواصل عبر واتساب
+              </span>
             </a>
 
-            <p className="text-sm text-[#EFE1D1]/70">{post.phoneNumber}</p>
           </div>
-        </div>
-        {/* Image */}
-        <div className="md:w-[35%]">
-          <div className="relative h-64 w-full md:h-full">
-            <Image
-              src={post.urlImagePost}
-              alt={post.nameCar}
-              fill
-              className="object-cover"
-            />
-          </div>
+
         </div>
       </div>
     </div>

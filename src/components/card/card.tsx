@@ -1,15 +1,13 @@
-import React from 'react'
-import data from "../../app/auth/post/postApi"
- 
-function card() {
-  
+import postApi from "./../../app/auth/Post/postApi";
 
+export default async function Card() {
+  const data = await postApi();
+
+  console.log(data);
 
   return (
     <>
-  {console.log(data)}
+    
     </>
-  )
+  );
 }
-
-export default card
