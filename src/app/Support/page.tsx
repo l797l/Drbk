@@ -1,3 +1,3 @@
-export default function Support(){
+export default function Posts(){
   return(<></>)
 }
