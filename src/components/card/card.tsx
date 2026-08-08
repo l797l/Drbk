@@ -1,13 +1,20 @@
 import React from 'react'
 import data from "../../app/auth/post/postApi"
  
-function card() {
+ async function card() {
   
+    const response = await data ( )
+    console.log(response)
+
+ 
 
 
   return (
     <>
-  {console.log(data)}
+  <h1>
+   {response[0].fullName
+}
+  </h1>
     </>
   )
 }
